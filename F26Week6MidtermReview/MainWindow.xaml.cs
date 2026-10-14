@@ -51,10 +51,72 @@ namespace F26Week6MidtermReview
                 grdEmployees.ItemsSource = _employees.OfType<CommissionEmployee>();
             }
 
+            // reorder columns in a DataGrid
             grdEmployees.Columns[0].DisplayIndex = 2;
             grdEmployees.Columns[1].DisplayIndex = 3;
             grdEmployees.Columns[2].DisplayIndex = 0;
             grdEmployees.Columns[3].DisplayIndex = 1;
+        }
+
+        private void txtEmployeeId_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtEmployeeId.Text.Length > 0)
+                btnFind.IsEnabled = true;
+            else
+                btnFind.IsEnabled = false;
+        }
+
+        private void btnFind_Click(object sender, RoutedEventArgs e)
+        {
+            int empId = Convert.ToInt32(txtEmployeeId.Text);
+            var emp = _employees.Find(e => e.Id == empId);
+
+            if (emp != null)
+            {
+                lblName.Content = emp.Name;
+                chkIsUnionMember.IsChecked = emp.IsUnionMember;
+                lblGrossEarnings.Content = emp.Earnings().ToString("C");
+
+                if (emp is HourlyEmployee hrEmp)
+                {
+                    rdoHrEmp.IsChecked = true;
+
+                    //HourlyEmployee hrEmp = emp as HourlyEmployee;
+
+                    lblHoursOrGrossSales.Content = hrEmp.Hours;
+                    lblWageOrCommRate.Content = hrEmp.Wage.ToString("C");
+
+                    hoursOrGrossSalesLabel.Content = "Hours";
+                    wageOrCommRateLabel.Content = "Wage";
+
+                    // if you need to show/hide a control
+                    //chkIsUnionMember.Visibility = Visibility.Visible;
+                }
+                else if (emp is CommissionEmployee commEmp)
+                {
+                    rdoCommEmp.IsChecked = true;
+
+                    lblHoursOrGrossSales.Content = commEmp.GrossSales.ToString("C");
+                    lblWageOrCommRate.Content = commEmp.CommissionRate.ToString("P");
+
+                    hoursOrGrossSalesLabel.Content = "Gross Sales";
+                    wageOrCommRateLabel.Content = "Commission Rate";
+
+                    // if you need to show/hide a control
+                    //chkIsUnionMember.Visibility = Visibility.Hidden;
+                }
+            }
+            else
+            {
+                lblName.Content = "";
+                lblHoursOrGrossSales.Content = "";
+                lblWageOrCommRate.Content = "";
+                lblGrossEarnings.Content = "";
+                chkIsUnionMember.IsChecked = false;
+                rdoHrEmp.IsChecked = true;
+
+                MessageBox.Show("Invalid ID. Please trya again.");
+            }
         }
     }
 }

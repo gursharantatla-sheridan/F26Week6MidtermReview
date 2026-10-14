@@ -19,8 +19,8 @@
         <DataGrid x:Name="grdEmployees" Height="147" Width="616" d:ItemsSource="{d:SampleData ItemCount=5}" Canvas.Left="80" Canvas.Top="245" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
 
         <Label Content="Employee Id" Canvas.Right="300" Canvas.Top="17" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-        <TextBox x:Name="txtEmployeeId" Canvas.Left="496" TextWrapping="NoWrap" Canvas.Top="20" Width="95" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Height="25"/>
-        <Button x:Name="btnFind" Content="Find" Canvas.Left="596" Canvas.Top="20" IsEnabled="False" HorizontalAlignment="Center" VerticalAlignment="Top" Width="100" IsDefault="True" FontSize="16" FontWeight="Bold"/>
+        <TextBox x:Name="txtEmployeeId" Canvas.Left="496" TextWrapping="NoWrap" Canvas.Top="20" Width="95" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Height="25" TextChanged="txtEmployeeId_TextChanged"/>
+        <Button x:Name="btnFind" Content="Find" Canvas.Left="596" Canvas.Top="20" IsEnabled="False" HorizontalAlignment="Center" VerticalAlignment="Top" Width="100" IsDefault="True" FontSize="16" FontWeight="Bold" Click="btnFind_Click"/>
 
         <Label Content="Name" Canvas.Right="300" Canvas.Top="54" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
         <Label x:Name="lblName" Content="" Canvas.Left="496" Canvas.Top="50" HorizontalAlignment="Center" VerticalAlignment="Top" Width="200" FontSize="16" FontWeight="Bold" BorderBrush="Black" BorderThickness="1"/>
